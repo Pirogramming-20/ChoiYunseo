@@ -3,7 +3,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/x-icon" href="./favicon.ico?1">
-    <title>Naver</title>
+    <title>NAVER</title>
     <style>
         :root{
             --color_title: #080808;
@@ -57,6 +57,9 @@
             --color_enter: #e538e2;
             --color_enter_rgb: 229,56,226;
         }
+        * {
+            box-sizing: border-box;
+        }
         html, body {
             margin: 0;
             padding: 0;
@@ -73,17 +76,16 @@
             text-align: left;
             position: relative;
         }
-        #header-hamburger {
+        #header-hamburger, #header-notice, #header-naverpay{
             position: absolute;
             top: 18px;
-            left: -10px;
             padding: 10px;
             display: inline-block;
             background: none;
             border: none;
             cursor: pointer;
         }
-        #header-hamburger:hover::before {
+        #header-hamburger:hover::before,  #header-notice:hover::before, #header-naverpay:hover::before{
             position: absolute;
             content: '';
             z-index: 0;
@@ -92,14 +94,9 @@
             width: 44px;
             height: 44px;
             background-color: var(--color_option_bg);
-            border-radius: 50%;
+            border-radius: 50%; 
         }
-        #header-hamburger:hover > div {
-            position: relative;
-            left: 1px;
-            top: 1px;
-        }
-        #header-hamburger > div {
+        #header-hamburger > div,#header-notice > div,#header-naverpay > div{
             background-image: url(./sp_main.png);
             width: 26px;
             height: 26px;
@@ -107,7 +104,26 @@
             z-index: 1;
             background-repeat: no-repeat;
             background-size: 433px 412px;
+        }
+        #header-hamburger {
+            left: -10px;
+        }
+        #header-hamburger > div {
             background-position: -335px -81px;
+        }
+        #header-naverpay {
+            right: 42px;
+            padding: 10px 8px;
+        }
+        #header-naverpay > div {
+            width: 30px;
+            background-position: -335px -284px;
+        }
+        #header-notice {
+            right: -10;
+        }
+        #header-notice > div {
+            background-position: -335px -135px;
         }
         #main {
             height: 2000px;
@@ -129,6 +145,14 @@
                 <button id="header-hamburger">
                     <div></div>
                     <span class="blind">확장 영역</span>
+                </button>
+                <button id="header-naverpay">
+                    <div></div>
+                    <span class="blind">네이버 페이</span>
+                </button>
+                <button id="header-notice">
+                    <div></div>
+                    <span class="blind">알림</span>
                 </button>
             </div>
             <div id="search"></div>
