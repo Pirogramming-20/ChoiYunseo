@@ -58,14 +58,17 @@ function check_numbers() {
             const checkResult = document.createElement('div');
             checkResult.className = 'check-result';
             const left = document.createElement('div');
-            left.innerText = inputNumList.join(" ")+':';
+            left.innerText = inputNumList.join(" ");
             const right =document.createElement('div');
             right.className = 'right';
             const out = document.createElement('div');
             out.className = 'out num-result';
             left.className = 'left';
             out.innerText = 'O';
-            checkResult.appendChild(left);            
+            const colone = document.createElement('span');
+            colone.innerText = ':';
+            checkResult.appendChild(left); 
+            checkResult.appendChild(colone);           
             checkResult.appendChild(right);
             right.appendChild(out);
             resultDisplay.appendChild(checkResult);
@@ -77,7 +80,7 @@ function check_numbers() {
                         countStrike++;
                         console.log("strike"+countStrike);
                     }
-                    else{
+                    else {
                         countBall++;
                         console.log("Ball"+countBall);
                     }
@@ -94,21 +97,27 @@ function check_numbers() {
             checkResult.className = 'check-result';
             const left = document.createElement('div');
             left.className = 'left';
-            left.innerText = inputNumList.join(" ") + ':';
+            left.innerText = inputNumList.join(" ");
             const right = document.createElement('div');
             right.className = 'right';
             const strike = document.createElement('div');
             strike.className = 'strike num-result';
-            right.innerText = `${countStrike} ${countBall}`;
             strike.innerText = 'S';
-            
             const ball = document.createElement('div');
             ball.className = 'ball num-result';
             ball.innerText = 'B';
-
+            const colone = document.createElement('span');
+            colone.innerText = ':';
+            const strikeNum = document.createElement('span');
+            strikeNum.innerText = countStrike+' ';
+            const ballNum = document.createElement('span');
+            ballNum.innerText = ' '+countBall+' ';
+            right.appendChild(strikeNum);
             right.appendChild(strike);
+            right.appendChild(ballNum);
             right.appendChild(ball);
             checkResult.appendChild(left);
+            checkResult.appendChild(colone);
             checkResult.appendChild(right);
             resultDisplay.appendChild(checkResult);  
         }
