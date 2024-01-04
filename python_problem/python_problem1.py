@@ -1,4 +1,5 @@
 num = 0
+
 while True:
     playNumA = input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능): ")
 
@@ -21,6 +22,7 @@ while True:
         if callNumA!=32:
             print("playerA :",callNumA)
         else:
+            print("playerB win!")
             break
 
     num = num+playNumA
@@ -47,6 +49,7 @@ while True:
         if callNumB!=32:
             print("playerB :",callNumB)
         else:
+            print("palyerA win!")
             break
 
     num = num+playNumB
