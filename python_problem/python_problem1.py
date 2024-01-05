@@ -22,14 +22,10 @@ while True:
             print("playerA",callNumA)
         elif callNumA == 31:
             print("palyerA 31")
-            print("palterB win!")
             break
-        else:
-            print("playerB win!")
-            break
-    
 
     num = num+playNumA
+    
     if callNumA == 31:
         break
 
@@ -56,10 +52,6 @@ while True:
             print("playerB",callNumB)
         elif callNumB == 31:
             print("playerB 31")
-            print("playerA win!")
-            break
-        else:
-            print("palyerA win!")
             break
 
     num = num+playNumB
