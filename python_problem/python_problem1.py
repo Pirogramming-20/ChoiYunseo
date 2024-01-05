@@ -1,68 +1,67 @@
-import random
-
 num = 0
+while True:
+    playNumA = input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능): ")
 
-def brgame(a):
     while True:
         try:
-            a = int(a)
-            if a not in [1,2,3]:
+            playNumA = int(playNumA)
+            if playNumA not in [1,2,3]:
                 print("1,2,3 중 하나를 입력하세요.")
-                a = input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능): ")
+                playNumA = input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능): ")
             else:
-                return a
+                break
         except ValueError:
             print("정수를 입력하세요.")
-            a = input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능): ")
+            playNumA = input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능): ")
 
-while True:
-    #computer
-    comNum = random.randint(1,3)
-    
-    for i in range(comNum):
-        callcomNum=num+1+i
-        if callcomNum<31:
-            print("computer",callcomNum)
-        elif callcomNum == 31:
-            print("computer 31")
-            print("player win!")
+    playNumA = int(playNumA)
+
+    for i in range(playNumA):
+        callNumA=num+1+i
+        if callNumA<31:
+            print("playerA",callNumA)
+        elif callNumA == 31:
+            print("palyerA 31")
+            print("palterB win!")
             break
         else:
-            print("player win!")
+            print("playerB win!")
             break
-        
-    num = num+comNum
+    
 
-    if callcomNum == 31:
+    num = num+playNumA
+    if callNumA == 31:
         break
 
-    #player
-    playerNum = input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능): ")
+    #playB
+    playNumB = input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능): ")
 
-    playerNum=brgame(playerNum) #함수 안에서 제대로 다시 받은 값을 playerNum으로 가지도록
+    while True:
+        try:
+            playNumB = int(playNumB)
+            if playNumB not in [1,2,3]:
+                print("1,2,3 중 하나를 입력하세요.")
+                playNumB = input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능): ")
+            else:
+                break
+        except ValueError:
+            print("정수를 입력하세요.")
+            playNumB = input("부를 숫자의 개수를 입력하세요(1, 2, 3만 입력 가능): ")
 
-    playerNum=int(playerNum)
+    playNumB = int(playNumB)
 
-    for i in range(playerNum):
-        callPlayerNum=num+1+i
-        if callPlayerNum<31:
-            print("player",callPlayerNum)
-        elif callPlayerNum ==31:
-            print("player 31")
-            print("computer win!")
+    for i in range(playNumB):
+        callNumB=num+1+i
+        if callNumB<31:
+            print("playerB",callNumB)
+        elif callNumB == 31:
+            print("playerB 31")
+            print("playerA win!")
             break
         else:
-            print("computer win!")
+            print("palyerA win!")
             break
-    
-    num = num+playerNum
 
-    if callPlayerNum == 31:
+    num = num+playNumB
+    if callNumB == 31:
         break
-
-    
-
-
-
-    
-
