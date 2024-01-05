@@ -58,12 +58,16 @@ stopBtn.addEventListener('click', (event)=> {
     //기록 삭제하기
     selectBtn.addEventListener('click',(event)=>{
         event.target.classList.toggle("ri-check-line");
-
+        
         deleteBtn.addEventListener('click',(e)=>{
             recordList.removeChild(recordTimeList);
+            allSelectBtn.classList.remove("ri-check-line")
         })
-        if (selectBtn.classList.contains('ri-check-line')) {
+        if (selectBtn.classList.contains("ri-check-line")) {
             allSelectBtn.classList.add("ri-check-line");
+        }
+        else {
+            allSelectBtn.classList.remove("ri-check-line")
         }
     })
 });
