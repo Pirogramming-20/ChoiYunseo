@@ -15,7 +15,7 @@ class Review(models.Model) :
     release_year = models.CharField(max_length=32)
     genre = models.CharField(max_length=20, choices=GENRE_CHOICES)
     star_score = models.FloatField()
-    running_time = models.IntegerField()
+    running_time = models.CharField(max_length=20)
     content = models.TextField()
     director = models.CharField(max_length=32)
     actor = models.CharField(max_length=32)

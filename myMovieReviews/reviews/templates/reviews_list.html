@@ -3,7 +3,7 @@
 {% block content %}
   {% for review in reviews %}
     <h2><a href="/reviews/{{review.id}}">{{review.title}}</a></h2>
-    <p>개봉년도 {{review.release_year}}</p>
+    <p>개봉년도 {{review.release_year}}년</p>
     <p>장르 {{review.genre}}</p>
     <p>별점 {{review.star_score}}</p>
   {% endfor %}
