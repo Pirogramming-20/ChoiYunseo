@@ -1,0 +1,19 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>{{review.title}}</h2>
+    <p>개봉년도 {{review.release_year}}</p>
+    <p>감독 {{review.director}}</p>
+    <p>주연 {{review.actor}}</p>
+    <p>장르 {{review.genre}}</p>
+    <p>별점 {{review.star_score}}</p>
+    <p>러닝타임 {{review.running_time}}</p>
+    <p>{{review.content}}</p>
+    
+    <a href="/reviews/{{review.id}}/update">수정하기</a>
+
+    <form action="/reviews/{{review.id}}/delete" method="post">
+        {% csrf_token %}
+        <input type="submit" value="삭제하기">
+    </form>
+{% endblock %}

@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <h2>Movie review🍿</h2>
+    <form action="/reviews/{{review.id}}/update" method="post">
+        {% csrf_token %}
+        제목 : <input name="title" value="{{review.title}}"> <br>
+        개봉년도 : <input name="release_year" value="{{review.release_year}}"> <br>
+        장르 : <select name="genre" value="{{review.genre}}">
+            <option value="default">-------</option>
+            <option value="action">action</option>
+            <option value="comedy">comedy</option>
+            <option value="drama">drama</option>
+            <option value="romance">romance</option>
+            <option value="SF">SF</option>
+        </select> <br>
+        별점 : <input name="star_score" value="{{review.star_score}}"> <br>
+        러닝타임 : <input name="running_time" value="{{review.running_time}}"> <br>
+        <p>리뷰 :</p> 
+        <textarea name="content" cols="30" rows="10">{{review.content}}</textarea> <br>
+        감독 : <input name="director" value="{{review.director}}"> <br>
+        배우 : <input name="actor" value="{{review.actor}}"> <br>
+        <div>
+            <input type="submit" value="수정완료">
+        </div>
+    </form>
+{% endblock %}
