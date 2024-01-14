@@ -5,11 +5,18 @@
  
     </article>
     <input type="button" value="fetch" onclick="
-      fetch('html').then(function(response){
-        response.text().then(function(text){
-          document.querySelector('article').innerHTML = text;
-        })
-      })
+    //   fetch('html').then(function(response){
+    //     response.text().then(function(text){
+    //       document.querySelector('article').innerHTML = text;
+    //     })
+    //   })
+    //Asynchoronous 비동기. fetch 실행 동안 밑에 콘솔 실행됨
+    function callbackme(){
+        console.log('reponse end')
+    }
+    fetch('html').then(callbackme);
+    console.log(1);
+    console.log(2);
     ">
   </body>
 </html>
