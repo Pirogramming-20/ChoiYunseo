@@ -11,10 +11,11 @@
     //     })
     //   })
     //Asynchoronous 비동기. fetch 실행 동안 밑에 콘솔 실행됨
-    function callbackme(){
-        console.log('reponse end')
-    }
-    fetch('html').then(callbackme);
+    fetch('html').then(function(response){
+            if(response.status == '404'){
+                alert('Not found')
+            }
+      });
     console.log(1);
     console.log(2);
     ">
