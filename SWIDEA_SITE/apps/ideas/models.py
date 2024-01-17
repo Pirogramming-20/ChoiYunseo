@@ -9,4 +9,5 @@ class Idea(models.Model):
     content = models.TextField('아이디어 설명:')
     like = models.IntegerField('아이디어 관심도:', default=0)
     tool = models.ForeignKey(Tool, on_delete=models.CASCADE, verbose_name='예상 개발툴:')
+    created_at = models.DateTimeField('작성일', auto_created=True, auto_now_add=True)
     

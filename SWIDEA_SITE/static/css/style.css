@@ -1,0 +1,62 @@
+body {
+    box-sizing: border-box;
+    margin: 10px;
+
+    background-image: url("/static/ideas/image/code.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    color:white;
+}
+
+a {
+    text-decoration: none;
+    color:white;
+}
+header {
+    display: flex;
+    justify-content: space-around;
+}
+
+.total_container {
+    padding: 0 20px 20px 20px;
+    background-color: rgba(128, 128, 128, 0.82);
+}
+
+.form_container {
+    width: 500px;
+}
+
+.sub_title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.sub_title_one {
+    color:aquamarine;
+}
+
+.item_container{
+    display: flex;
+    justify-content: space-around;
+    align-items:baseline;
+}
+
+.item{
+    padding: 10px;
+    background-color: rgb(90, 153, 225);
+    
+}
+img{
+    width: 200px;
+    height: 200px;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.tool_item{
+    display: flex;
+    justify-content: space-around;
+}

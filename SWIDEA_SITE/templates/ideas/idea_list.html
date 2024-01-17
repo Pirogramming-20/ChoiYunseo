@@ -1,11 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <div>
-        <h2>Idea List</h2>
+    <div class="sub_title">
+        <h2 class="sub_title_one">Idea List</h2>
         <p>나의 아이디어를 잊지말고 기록해보세요</p>
     </div>
-    <div class="content">
+
+    <label for="sort">정렬 순서:</label>
+    <select name="sort" id="sort" onchange="changeSort(this)">
+        <option value="default">정렬순</option>
+        <option value="name">이름순</option>
+        <option value="created">등록순</option>
+        <option value="like">관심도순</option>
+    </select>
+
+    <script>
+        function changeSort(select) {
+            var sortValue = select.value;
+            window.location.href = "{% url 'ideas:main' %}?sort=" + sortValue;
+        }
+    </script>
+
+    <div class="item_container">
         {% for idea in ideas %}
             <div class="item">
                 {% if idea.photo.url != null and idea.photo.url != '' %}
@@ -17,9 +33,9 @@
                     <a href="{% url 'ideas:detail' idea.pk %}" class="title">{{idea.title}}</a>
                     <p class="tool">{{idea.tool}}</p>
                     <div class="like">
-                        <a href="plus">+</a>
-                        <p class="like">{{idea.like}}</p>
-                        <a href="minus">-</a>
+                        <i class="ri-add-line" id="plus"></i>
+                        <p class="like" data-like="{{idea.like}}">{{idea.like}}</p>
+                        <i class="ri-subtract-line" id="minus"></i>
                     </div>
                 </div>   
             </div>

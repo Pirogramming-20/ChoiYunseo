@@ -4,7 +4,16 @@ from .forms import IdeaForm
 
 # Create your views here.
 def main(request):
-    ideas = Idea.objects.all()
+    sort_order = request.GET.get('sort', 'name')
+    if sort_order == 'name':
+        ideas = Idea.objects.order_by('title')
+    elif sort_order == 'created':
+        ideas = Idea.objects.order_by('created_at')
+    elif sort_order == 'like':
+        ideas = Idea.objects.order_by('-like')
+    else:
+        ideas = Idea.objects.all()
+    # ideas = Idea.objects.all()
     ctx = {'ideas': ideas}
     return render(request, 'ideas/idea_list.html', ctx)
 

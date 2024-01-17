@@ -5,7 +5,11 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SWIDEA_SITE</title>
-    <link rel="stylesheet" href="{% static 'ideas/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <link
+    href="https://cdn.jsdelivr.net/npm/remixicon@4.1.0/fonts/remixicon.css"
+    rel="stylesheet"/>
+    <script defer src="{% static 'ideas/js/scripts.js' %}"></script>
 </head>
 <body>
     <header>
@@ -15,8 +19,11 @@
         <p><a href="{% url 'tools:create' %}">개발도구 등록</a></p>
         <p><a href="{% url 'tools:list' %}">개발도구 관리</a></p>
     </header>
-    {% block content %}
+    <div class="total_container">
+        {% block content %}
     
-    {% endblock %}
+        {% endblock %}
+    </div>
+    
 </body>
 </html>

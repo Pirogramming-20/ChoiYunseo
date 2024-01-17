@@ -1,9 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <h2>DevTool Detail</h2>
-    <p>개발툴 세부내용 페이지 입니다. 자신이 다룰 수 있는 개발툴에 대한 상세내용을 확인해 보아요.</p>
-
+    <div class="sub_title">
+        <h2>DevTool Detail</h2>
+        <p>개발툴 세부내용 페이지 입니다. 자신이 다룰 수 있는 개발툴에 대한 상세내용을 확인해 보아요.</p>
+    </div>
     <div class="tool_item">
         <p class="tool_title">{{tool.title}}</p>
         <p class="tool_type">{{tool.type}}</p>

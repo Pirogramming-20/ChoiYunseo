@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-    <h2>idea Detail</h2>
-    <p>아이디어 세부내용 페이지 입니다. 당신이 구현하려 한 아잉디어를 자세히 살펴보세요.</p>
+    <div class="sub_title">
+        <h2>idea Detail</h2>
+        <p>아이디어 세부내용 페이지 입니다. 당신이 구현하려 한 아잉디어를 자세히 살펴보세요.</p>
+    </div>
 
     {% if idea.photo.url != '' %}
         <img src="{{idea.photo.url}}" alt="이미지">
