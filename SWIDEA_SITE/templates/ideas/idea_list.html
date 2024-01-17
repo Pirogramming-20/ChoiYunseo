@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <div>
+        <h2>Idea List</h2>
+        <p>나의 아이디어를 잊지말고 기록해보세요</p>
+    </div>
+    <div class="content">
+        {% for idea in ideas %}
+            <div class="item">
+                {% if idea.photo.url != null and idea.photo.url != '' %}
+                    <img src="{{ idea.photo.url }}" alt="대체텍스트">
+                {% else %}
+                    <img src="{% static 'ideas/image/no_img.png' %}" alt="대체텍스트">
+                {% endif %}
+                <div class="info">
+                    <a href="{% url 'ideas:detail' idea.pk %}" class="title">{{idea.title}}</a>
+                    <p class="tool">{{idea.tool}}</p>
+                    <div class="like">
+                        <a href="plus">+</a>
+                        <p class="like">{{idea.like}}</p>
+                        <a href="minus">-</a>
+                    </div>
+                </div>   
+            </div>
+        {% endfor %}
+    </div>
+    
+{% endblock %}

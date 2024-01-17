@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <form action="{% url 'tools:update' pk %}" method="POST">
+        {%csrf_token%} {{form.as_p}}
+        <button>submit</button>
+    </form>
+{% endblock %}

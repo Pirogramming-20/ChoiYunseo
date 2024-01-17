@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+    <h2>DevTool Detail</h2>
+    <p>개발툴 세부내용 페이지 입니다. 자신이 다룰 수 있는 개발툴에 대한 상세내용을 확인해 보아요.</p>
+
+    <div class="tool_item">
+        <p class="tool_title">{{tool.title}}</p>
+        <p class="tool_type">{{tool.type}}</p>
+        <p class="tool_content">{{tool.content}}</p>
+        <p>>만들 수 있는 SW 목록</p>
+        {% for rel_idea in related_ideas %}
+            <a href="{% url 'ideas:detail' rel_idea.pk %}">
+                {{rel_idea.title}} <br>
+            </a>
+        {% endfor %}
+    </div>
+
+    <form action="{% url 'tools:delete' tool.pk %}" method="POST">
+        {%csrf_token%}
+        <button >삭제</button>
+        <a href="{% url 'tools:list' %}">목록</a>
+        <a href="{% url 'tools:update' tool.pk %}">수정</a>
+    </form>
+{% endblock %}
