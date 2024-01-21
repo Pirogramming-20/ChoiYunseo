@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% block head%}
+
+{% endblock %}
+
+{% block content %}
+    <div class="main_container">
+        {% for post in posts %}
+            <div class="card_container post-id-{{post.id}}">
+                <div class="card_body">
+                    <div class="post_user">{{post.user.name}}</div>
+                    {% if post.photo,url != null and post.photo.url != '' %}
+                        <img src="{{post.photo.url}}" alt="대체텍스트">
+                    {% else %}
+                        <img src="{% static 'posts/image/no_img.png' %}" alt="대체텍스트">
+                    {% endif %}
+                    <div class="post_img"></div>
+                    <div class="card_title">{{post.title}}</div>
+                    <div class="card_content">{{post.content}}</div>
+                    <div class="card_btn post_like">❤️ {{like.count}}</div>
+                    <div class="card_btn post_dislike">👎 {{dislike.count}}</div>
+                </div>
+            </div>
+    </div>
+{% endblock %}
