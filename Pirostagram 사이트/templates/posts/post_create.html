@@ -1,8 +1,10 @@
 {% extends 'base.html' %}
-{% block head%}
-
-{% endblock %}
 
 {% block content %}
-
+<div class="create_container">
+    <form action="{% url 'posts:create' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %} {{form}}
+        <button>Post</button>
+    </form>
+</div>
 {% endblock %}

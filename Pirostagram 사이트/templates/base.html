@@ -1,17 +1,23 @@
+{%load static%}
 <!DOCTYPE html>
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Pirostagram</title>
+    <link rel="stylesheet" href="{% static 'post/css/style.css' %}">
 </head>
 <body>
     <header class="nav">
         <a href="/" id="logo" style="text-decoration: none;"><h1>pirostagram</h1></a>
-        <a href="/">post</a>
+        <a href="{% url 'posts:create' %}">글쓰기</a>
     </header>
     {% block content %}
 
+    {% endblock %}
+
+    {% block extra %}
+    
     {% endblock %}
 </body>
 </html>

@@ -1,7 +1,5 @@
 {% extends 'base.html' %}
-{% block head%}
-
-{% endblock %}
+{% load static %}
 
 {% block content %}
     <div class="main_container">
@@ -9,17 +7,108 @@
             <div class="card_container post-id-{{post.id}}">
                 <div class="card_body">
                     <div class="post_user">{{post.user.name}}</div>
-                    {% if post.photo,url != null and post.photo.url != '' %}
-                        <img src="{{post.photo.url}}" alt="대체텍스트">
+                    {% if post.photo.url != '' %}
+                        <img class="post_photo" src="{{post.photo.url}}" alt="대체텍스트">
                     {% else %}
-                        <img src="{% static 'posts/image/no_img.png' %}" alt="대체텍스트">
+                        <img class="post_photo" src="{% static 'post/image/no_image.png' %}" alt="대체텍스트">
                     {% endif %}
                     <div class="post_img"></div>
-                    <div class="card_title">{{post.title}}</div>
+                    <div class="card_title"><a href="{% url 'posts:detail' post.pk %}">{{post.title}}</a></div>
                     <div class="card_content">{{post.content}}</div>
-                    <div class="card_btn post_like">❤️ {{like.count}}</div>
-                    <div class="card_btn post_dislike">👎 {{dislike.count}}</div>
+                    <div class="card_btn post_like" onclick="onClickLike({{post.id}}, 'likes_count')">❤️ {{post.likes_count}}</div>
+                    <div class="card_btn post_dislike" onclick="onClickLike({{post.id}}, 'dislikes_count')">👎 {{post.dislikes_count}}</div>
+                    <button onclick="createComment({{post.id}})">댓글 작성</button>
+                    {% for comment in post.comments %}
+                        <div class="comment-content">
+                            {{comment.content}}
+                            <button onclick="deleteComment({{comment.id}})">댓글 삭제</button>
+                        </div>
+                    {% endfor %}
+                    <form action="{% url 'posts:delete' post.pk %}" method="post">
+                        {%csrf_token%}
+                        <button>삭제</button>
+                    </form>
                 </div>
             </div>
+        {% endfor %}
     </div>
 {% endblock %}
+
+{% block extra %}
+<script>
+    const requestLike = new XMLHttpRequest();
+
+    const onClickLike = (id, type) => {
+        const url = "/like_ajax/";
+        
+        requestLike.open("POST", url, true);
+        requestLike.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+        );
+
+        requestLike.send(JSON.stringify({id:id, type:type}));
+    }
+
+    requestLike.onreadystatechange = () => {
+        if (requestLike.readyState === XMLHttpRequest.DONE) {
+            if(requestLike.status < 400) {
+                const {id, type} = JSON.parse(requestLike.response);
+                const element = document.querySelector(`.post-id-${id} .post_${type}`);
+                const originHTML = element.innerHTML;
+                const [buttonType, num] = originHTML.split(" ");
+                const count = Number(num) + 1;
+
+                element.innerHTML = `${buttonType} ${count}`;
+            }
+        };
+    };
+    // 댓글작성
+    const requestCreateComment = new XNLHttpRequest();
+
+    const createComment = (postId) => {
+        const content = prompt('댓글 내용을 입력하세요.');
+
+        const url = "/create_comment_ajax/";
+        requestCreateComment.open("POST", url, true);
+        requestCreateComment.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+        );
+        requestCreateComment.send(`post_id=${postId}&content=${content}`);
+    }
+
+    requestCreateComment.onreadystatechange = () => {
+        if (requestCreateComment.readyState === XMLHttpRequest.DONE) {
+            if (requestCreateComment.status < 400) {
+                const { comment_id, content } = JSON.parse(requestCreateComment.response);
+                const element = document.querySelector(`.post-id-${id} .comment-${content}`)
+                
+                element.innerHTML = `${content}`
+            }
+        }
+    }
+    // 댓글삭제
+    const requestDeleteComment = new XMLHttpRequest();
+
+    const deleteComment = (commentId) => {
+        const url = "/delete_comment_ajax/";
+        requestDeleteComment.open("POST", url, true);
+        requestDeleteComment.setRequestHeader(
+            "Content-Type",
+            "application/x-www-form-urlencoded"
+        );
+        requestDeleteComment.send(`comment_id=${commentId}`);
+    }
+
+    requestDeleteComment.onreadystatechange = () => {
+        if(requestDeleteComment.readyState == XMLHttpRequest.DONE) {
+            if (requestDeleteComment.status < 400) {
+                //클라이언트에서 댓글 삭제 로직 구현
+            }
+        }
+    }
+
+</script>
+
+{%endblock%}
